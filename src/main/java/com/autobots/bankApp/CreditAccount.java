@@ -1,8 +1,10 @@
 package com.autobots.bankApp;
 
-public class DepositAccount extends BankAccount {
+public class CreditAccount extends BankAccount{
 
-    public DepositAccount(Client owner, Currency currency) {
+    private final double creditLimit = 1000;
+
+    public CreditAccount(Client owner, Currency currency) {
         super(owner, currency);
     }
 
@@ -14,7 +16,7 @@ public class DepositAccount extends BankAccount {
 
     @Override
     public boolean withdraw(double amount) {
-        if (amount <= balance) {
+        if (amount <= balance + creditLimit) {
             balance -= amount;
             addTransaction("WITHDRAW", amount);
             return true;

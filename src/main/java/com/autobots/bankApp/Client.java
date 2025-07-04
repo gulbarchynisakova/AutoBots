@@ -1,4 +1,38 @@
 package com.autobots.bankApp;
 
+import java.util.UUID;
+import java.util.List;
+import java.util.ArrayList;
+
 public class Client {
+    private final String fullName;
+    private final String clientID;
+    private final String pin;
+    private final List<BankAccount> accounts = new ArrayList<>();
+    public Client(String fullName, String pin) {
+        this.fullName = fullName;
+        this.pin = pin;
+        this.clientID = String.valueOf(UUID.randomUUID());
+    }
+
+    public boolean authenticate(String inputPin) {
+        return this.pin.equals(inputPin);
+    }
+
+    public void addAccount(BankAccount account) {
+        accounts.add(account);
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public String getClientID() {
+        return clientID;
+    }
+
+    public List<BankAccount> getAccounts() {
+        return accounts;
+    }
 }
+
